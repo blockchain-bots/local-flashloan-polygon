@@ -35,6 +35,7 @@ contract FlashLoan is FlashLoanSimpleReceiverBase {
         address initiator,
         bytes calldata params // abi.decode(params) to decode params
     ) external returns (bool){
+        require(amount <= IERC20(asset).balanceOf(address(this)), "Invalid balance, was the flashLoan successful?");
 
         // do stuff with flash loan here
 
